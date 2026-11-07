@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api_integration"
+version = "0.1.0"
+description = "Validated Excel-to-RFQ automation with an offline demonstration"
+readme = "README.md"
+authors = [
+    {name = "Anton Ryabchikov"},
+]
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic==2.11.10",
+    "pydantic-settings==2.10.1",
+    "requests==2.33.0",
+    "openpyxl==3.1.5",
+    "exchangelib==5.6.0",
+    "tenacity==9.1.4"
+]
+
+[project.scripts]
+rfq-demo = "api_integration.demo:main"
+run-api-integration = "api_integration.pipeline:run_pipeline_with_lock"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov",
+    "pytest-mock",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

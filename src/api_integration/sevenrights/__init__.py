@@ -1,0 +1,2 @@
+# sevenrights package
+
